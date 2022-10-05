@@ -6,21 +6,14 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 
-public class RollDiceHttpRequest {
+public class HttpRollDice {
 
-  private static final String BASE_URL = "https://roll-dice1.p.rapidapi.com/rollDice";
-  private static final String API_KEY = Objects.requireNonNull(System.getenv("API_KEY"),
-      "Environment API_KEY cannot be null.");
-  private static final String API_HOST = Objects.requireNonNull(System.getenv("API_HOST"),
-      "Environment API_HOST cannot be null.");
-
-  public HttpResponse<String> rollDice() {
+  private HttpResponse<String> requestRollDice() {
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .headers("X-RapidAPI-Key", API_KEY, "X-RapidAPI-Host", API_HOST)
-          .uri(URI.create(BASE_URL))
+          .headers("X-RapidAPI-Key", RollDiceUtil.API_KEY, "X-RapidAPI-Host", RollDiceUtil.API_HOST)
+          .uri(URI.create(RollDiceUtil.BASE_URL))
           .GET()
           .build();
 
@@ -32,4 +25,10 @@ public class RollDiceHttpRequest {
     }
   }
 
+  public void rollDice(String threadName, int numberOfExecutions) {
+    for (int i = 0; i < numberOfExecutions; i++) {
+      HttpResponse<String> response = requestRollDice();
+      System.out.println("Request roll dice " + threadName + " -> " + response.body());
+    }
+  }
 }

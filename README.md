@@ -1,1 +1,1 @@
-# random-dice-concurrency
+# random-dice-thread
