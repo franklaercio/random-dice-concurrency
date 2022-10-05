@@ -17,11 +17,13 @@ public class SequentialMain {
     System.out.println("Warm-up Java Virtual Machine...");
     rollDice(rollDiceHttpRequest, 2);
 
+    System.out.println("Starting the sequential test...");
+
     Instant start = Instant.now();
     rollDice(rollDiceHttpRequest, Integer.parseInt(numberOfTimes));
     Instant end = Instant.now();
 
-    System.out.print("Total time: " + Duration.between(start, end).toSeconds() + "s");
+    System.out.print("Finishing the main thread with a " + Duration.between(start, end).toSeconds() + "s");
   }
 
   private static void rollDice(RollDiceHttpRequest rollDiceHttpRequest, int total) {
