@@ -1,35 +1,27 @@
 package thread;
 
 import exceptions.InterruptedRollDiceException;
-import java.time.Duration;
-import java.time.Instant;
-import utils.HttpRollDice;
-import utils.RollDiceUtil;
+import utils.ConstantsUtils;
 
 public class ThreadMain {
 
   private static final int NUMBER_OF_THREADS = 10;
+  private static final long FIVE_HUNDRED_MILLISECONDS = 500L;
 
   public static void main(String[] args) {
-    System.out.println("Warm-up Java Virtual Machine...");
 
-    HttpRollDice httpRollDice = new HttpRollDice();
-    httpRollDice.rollDice("MainThread", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS));
+    System.out.println("Starting the " + Thread.currentThread().getName() + " concurrency.");
 
-    System.out.println("Starting thread concurrency...");
-
-    Instant start = Instant.now();
-
-    RollDiceThread thread0 = new RollDiceThread("Thread0", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread1 = new RollDiceThread("Thread1", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread2 = new RollDiceThread("Thread2", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread3 = new RollDiceThread("Thread3", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread4 = new RollDiceThread("Thread4", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread5 = new RollDiceThread("Thread5", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread6 = new RollDiceThread("Thread6", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread7 = new RollDiceThread("Thread7", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread8 = new RollDiceThread("Thread8", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
-    RollDiceThread thread9 = new RollDiceThread("Thread9", Integer.parseInt(RollDiceUtil.NUMBER_OF_EXECUTIONS) / NUMBER_OF_THREADS);
+    RollDiceThread thread0 = new RollDiceThread("Thread0", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread1 = new RollDiceThread("Thread1", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread2 = new RollDiceThread("Thread2", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread3 = new RollDiceThread("Thread3", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread4 = new RollDiceThread("Thread4", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread5 = new RollDiceThread("Thread5", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread6 = new RollDiceThread("Thread6", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread7 = new RollDiceThread("Thread7", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread8 = new RollDiceThread("Thread8", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
+    RollDiceThread thread9 = new RollDiceThread("Thread9", (ConstantsUtils.NUMBER_OF_EXECUTIONS / NUMBER_OF_THREADS), FIVE_HUNDRED_MILLISECONDS);
 
     thread0.start();
     thread1.start();
@@ -57,9 +49,7 @@ public class ThreadMain {
       throw new InterruptedRollDiceException("Un unexpected error occurred with a one roll dice thread.");
     }
 
-    Instant end = Instant.now();
-
-    System.out.println("Finishing the main thread with a " + Duration.between(start, end).toSeconds() + "s");
+    System.out.println("Finishing the " + Thread.currentThread().getName() + " concurrency.");
   }
 
 }

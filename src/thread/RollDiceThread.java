@@ -1,19 +1,21 @@
 package thread;
 
-import utils.HttpRollDice;
+import utils.RollDiceUtils;
 
 public class RollDiceThread extends Thread {
 
   private final int numberOfTimes;
+  private final long timeSleep;
 
-  public RollDiceThread(String name, int numberOfTimes) {
+  public RollDiceThread(String name, int numberOfTimes, long timeSleep) {
     super(name);
     this.numberOfTimes = numberOfTimes;
+    this.timeSleep = timeSleep;
   }
 
   @Override
   public void run() {
-    HttpRollDice httpRollDice = new HttpRollDice();
-    httpRollDice.rollDice(this.getName(), numberOfTimes);
+    RollDiceUtils rollDiceUtils = new RollDiceUtils();
+    rollDiceUtils.rollDice(this.getName(), timeSleep, numberOfTimes);
   }
 }
