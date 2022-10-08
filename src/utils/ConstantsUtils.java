@@ -16,4 +16,7 @@ public class ConstantsUtils {
 
   public static final int NUMBER_OF_EXECUTIONS = Integer.parseInt(Objects.requireNonNull(System.getenv("NUMBER_OF_EXECUTIONS"),
       "Environment NUMBER_OF_EXECUTIONS cannot be null."));
+
+  public static final long INTERVAL_TIME = Long.parseLong(Objects.requireNonNull(System.getenv("NUMBER_OF_EXECUTIONS"),
+      "Environment NUMBER_OF_EXECUTIONS cannot be null."));
 }
