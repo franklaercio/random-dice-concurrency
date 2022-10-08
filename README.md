@@ -1,7 +1,8 @@
 # Roll Dice API
 
-## Grupo: Frank Laércio da Costa Santos Júnior
-          Ohanna de Macena Dezidério
+## Grupo: 
+- Frank Laércio da Costa Santos Júnior
+- Ohanna de Macena Dezidério
           
 ## Disciplina: Programação Concorrente
 ## Docente: Everton
